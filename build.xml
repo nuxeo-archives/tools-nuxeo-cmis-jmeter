@@ -1,0 +1,63 @@
+<project name="cmis-bench" default="deploy" basedir=".">
+  <property name="jar.path" value="${basedir}/target" />
+  <property name="dependency.path" value="${basedir}/target/dependency" />
+  <property file="build.properties" />
+
+  <tstamp>
+   <format property="stamp" pattern="dMMhhmmss" locale="en"/>
+  </tstamp>
+
+  <path id="xslt.classpath">
+    <fileset dir="${dependency.path}" includes="saxon*.jar"/>
+  </path>
+  
+  <target name="deploy" description="Deploy jars into JMeter">
+    
+    <copy todir="${jmeter.home}/lib/junit" flatten="true" includeEmptyDirs="false">
+      <fileset dir="${jar.path}">
+	<include name="*.jar" />
+      </fileset>
+      <fileset dir="${dependency.path}">
+	<include name="*.jar" />
+      </fileset>
+    </copy>
+    
+  </target>
+
+  <target name="run" description="Run the jmeter bench">
+
+    <taskdef name="jmeter"
+	     classpath="${jmeter.home}/extras/ant-jmeter-1.0.9.jar"
+	     classname="org.programmerplanet.ant.taskdefs.jmeter.JMeterTask"/>
+    <jmeter
+       jmeterhome="${jmeter.home}"
+       testplan="${basedir}/loadtests/cmis-bench.jmx"
+       resultlog="${basedir}/loadtests/bench-results-${stamp}.xml">
+      <property name="jmeter.save.saveservice.output_format" value="xml"/>
+      <property name="jmeter.save.saveservice.assertion_results" value="all"/>
+      <property name="jmeter.save.saveservice.bytes" value="true"/>
+      <property name="file_format.testlog" value="2.1"/>
+      
+      <jvmarg value="-Duser.dir=${user.dir}"/>
+
+      <property name="base_url" value="${base_url}"/>
+      <property name="threads" value="${threads}"/>
+      <property name="duration" value="${duration}"/>     
+      <property name="loop" value="${loop}"/>     
+      <property name="username" value="${username}"/>     
+      <property name="password" value="${password}"/>     
+    </jmeter>
+    <xslt 
+       classpathref="xslt.classpath"
+       force="true"
+       in="${basedir}/loadtests/bench-results-${stamp}.xml"
+       out="${basedir}/loadtests/bench-results-${stamp}.html"
+       style="${jmeter.home}/extras/jmeter-results-report_21.xsl">
+      <param name="showData" expression="${show-data}"/>
+    </xslt>
+    <echo>Report done: ${basedir}/loadtests/bench-results-${stamp}.html</echo>
+
+  </target>
+
+
+</project>
