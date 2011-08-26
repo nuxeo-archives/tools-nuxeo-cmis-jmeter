@@ -17,15 +17,16 @@
 
   - JMeter 2.4
     wget http://archive.apache.org/dist/jakarta/jmeter/binaries/jakarta-jmeter-2.4.tgz
+
   - maven
+
   - ant
 
 * Configuration
   
   Edit the build.properties file
 
-  - jmeter.home :: full path to the jmeter home, the $JMETER_HOME/lib/junit
-		   must be writable.
+  - jmeter.home :: full path to the jmeter home
 
   - username, password, base_url :: access to the CMIS server
 
@@ -37,7 +38,8 @@
 
 * Building and deploying
 
-  mvn -Dmaven.test.skip.exec=true clean package dependency:copy-dependencies
+  Make sure you are allowed to write into the $JMETER_HOME/lib/junit folder then:
+
   ant deploy
 
 * Running the bench with ant
@@ -46,25 +48,35 @@
 
   This produce a basic html report.
 
-* Running the bench with JMeter GUI
+* Running the bench with the JMeter GUI
   
   Load the ./loadtests/cmis-bench.xml file.
   Check the Parameters user defined variables.
 
 * Running the junit test with maven
 
+  This will use the default properties hard coded in the junit test.
+
   mvn test
 
-
 * To do
+
 ** DONE Add a rampup period
    CLOSED: [2011-08-26 ven. 10:51]
    :LOGBOOK:
    - State "DONE"       from "TODO"       [2011-08-26 ven. 10:51]
    :END:
-** TODO Remove debug trace
-   and add log4j conf
+** DONE Run build from ant
+   CLOSED: [2011-08-26 ven. 12:50]
+   :LOGBOOK:
+   - State "DONE"       from "TODO"       [2011-08-26 ven. 12:50]
+   :END:
+   include the mvn cmd in ant build
+** DONE Remove debug trace
+   CLOSED: [2011-08-26 ven. 12:51]
+   :LOGBOOK:
+   - State "DONE"       from "TODO"       [2011-08-26 ven. 12:51]
+   :END:
+** TODO Add a log4j conf
 ** TODO Add a file content and title
 ** TODO Render the throughput in the report
-** TODO Run build from ant
-   include the mvn cmd in ant build

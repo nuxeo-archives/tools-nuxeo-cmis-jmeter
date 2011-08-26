@@ -11,7 +11,13 @@
     <fileset dir="${dependency.path}" includes="saxon*.jar"/>
   </path>
   
-  <target name="deploy" description="Deploy jars into JMeter">
+  <target name="build" description="Build the junit test case jar">
+    <exec executable="mvn">
+      <arg line="-Dmaven.test.skip.exec=true clean package dependency:copy-dependencies"></arg>
+    </exec>
+  </target>
+
+  <target name="deploy" description="Deploy jars into JMeter" depends="build">
     
     <copy todir="${jmeter.home}/lib/junit" flatten="true" includeEmptyDirs="false">
       <fileset dir="${jar.path}">
