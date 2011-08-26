@@ -77,6 +77,10 @@
    :LOGBOOK:
    - State "DONE"       from "TODO"       [2011-08-26 ven. 12:51]
    :END:
-** TODO Add a log4j conf
+** DONE Add a log4j conf
+   CLOSED: [2011-08-26 ven. 13:22]
+   :LOGBOOK:
+   - State "DONE"       from "TODO"       [2011-08-26 ven. 13:22]
+   :END:
 ** TODO Add a file content and title
 ** TODO Render the throughput in the report
