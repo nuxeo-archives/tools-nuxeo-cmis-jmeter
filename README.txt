@@ -1,10 +1,11 @@
-#+TITLE: cmis-bench readme
+#    -*- mode: org -*-
+#+TITLE: cmisbench JMeter
 
-* Introduction
+* Description
 
-  This is a Nuxeo CMIS bench using JMeter script.
+  This is a Nuxeo CMIS benchmark using JMeter script.
 
-  The scenario test scenario is the following:
+  The test scenario is the following:
 
   1. create a folder at the root level
   2. create 10 files
@@ -15,14 +16,16 @@
 * Requirement
 
   - JMeter 2.4
+    wget http://archive.apache.org/dist/jakarta/jmeter/binaries/jakarta-jmeter-2.4.tgz
   - maven
   - ant
 
 * Configuration
   
-  Edit the build.properties file and set the 
+  Edit the build.properties file
+
   - jmeter.home :: full path to the jmeter home, the $JMETER_HOME/lib/junit
-		   must be writable
+		   must be writable.
 
   - username, password, base_url :: access to the CMIS server
 
@@ -47,3 +50,12 @@
 * Running the bench with JMeter GUI
   
   load the ./loadtests/cmis-bench.xml file.
+  Check the Parameters user defined variables.
+
+* To do
+** TODO Remove debug trace
+** TODO Add a file content and title
+** TODO Render the throughput in the report
+** TODO Run build from ant
+   include the mvn cmd in ant build
+
