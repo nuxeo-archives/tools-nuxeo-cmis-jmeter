@@ -24,7 +24,7 @@
 
 * Configuration
   
-  Edit the build.properties file
+  Copy the build.properties.sample into build.properties and edit:
 
   - jmeter.home :: full path to the jmeter home
 
@@ -62,33 +62,6 @@
   mvn test
 
 * To do
-
-** DONE Add a rampup period
-   CLOSED: [2011-08-26 ven. 10:51]
-   :LOGBOOK:
-   - State "DONE"       from "TODO"       [2011-08-26 ven. 10:51]
-   :END:
-** DONE Run build from ant
-   CLOSED: [2011-08-26 ven. 12:50]
-   :LOGBOOK:
-   - State "DONE"       from "TODO"       [2011-08-26 ven. 12:50]
-   :END:
-   include the mvn cmd in ant build
-** DONE Remove debug trace
-   CLOSED: [2011-08-26 ven. 12:51]
-   :LOGBOOK:
-   - State "DONE"       from "TODO"       [2011-08-26 ven. 12:51]
-   :END:
-** DONE Add a log4j conf
-   CLOSED: [2011-08-26 ven. 13:22]
-   :LOGBOOK:
-   - State "DONE"       from "TODO"       [2011-08-26 ven. 13:22]
-   :END:
-** DONE Add a file content and title
-   CLOSED: [2011-08-26 ven. 16:24]
-   :LOGBOOK:
-   - State "DONE"       from "TODO"       [2011-08-26 ven. 16:24]
-   :END:
-** TODO send report into target
 ** TODO Add a delete action
 ** TODO Render the throughput in the report
+   

@@ -1,8 +1,10 @@
 syntax:glob
 
+reports/*
 target/*
 .classpath
 .project
 .settings
 *~
 jmeter.log
+build.properties

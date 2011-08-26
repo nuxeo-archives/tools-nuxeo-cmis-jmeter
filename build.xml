@@ -1,6 +1,7 @@
 <project name="cmis-bench" default="deploy" basedir=".">
   <property name="jar.path" value="${basedir}/target" />
   <property name="dependency.path" value="${basedir}/target/dependency" />
+  <property name="report.path" value="${basedir}/reports" />
   <property file="build.properties" />
 
   <tstamp>
@@ -35,15 +36,20 @@
     <taskdef name="jmeter"
 	     classpath="${jmeter.home}/extras/ant-jmeter-1.0.9.jar"
 	     classname="org.programmerplanet.ant.taskdefs.jmeter.JMeterTask"/>
+
+    <mkdir dir="${report.path}" />
+
     <jmeter
        jmeterhome="${jmeter.home}"
        testplan="${basedir}/loadtests/cmis-bench.jmx"
-       resultlog="${basedir}/loadtests/bench-results-${stamp}.xml">
+       resultlog="${report.path}/bench-results-${stamp}.xml">
       <property name="jmeter.save.saveservice.output_format" value="xml"/>
       <property name="jmeter.save.saveservice.assertion_results" value="all"/>
       <property name="jmeter.save.saveservice.bytes" value="true"/>
+      <property name="jmeter.save.saveservice.thread_counts" value="true"/>
+
       <property name="file_format.testlog" value="2.1"/>
-      
+
       <jvmarg value="-Duser.dir=${user.dir}"/>
 
       <property name="base_url" value="${base_url}"/>
@@ -59,12 +65,12 @@
     <xslt 
        classpathref="xslt.classpath"
        force="true"
-       in="${basedir}/loadtests/bench-results-${stamp}.xml"
-       out="${basedir}/loadtests/bench-results-${stamp}.html"
+       in="${report.path}/bench-results-${stamp}.xml"
+       out="${report.path}/bench-results-${stamp}.html"
        style="${jmeter.home}/extras/jmeter-results-report_21.xsl">
       <param name="showData" expression="${show-data}"/>
     </xslt>
-    <echo>Report done: ${basedir}/loadtests/bench-results-${stamp}.html</echo>
+    <echo>Report done: ${report.path}/bench-results-${stamp}.html</echo>
 
   </target>
 
