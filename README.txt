@@ -35,12 +35,9 @@
 
   - rampup :: Ramp-Up period in seconds
 
-* Building
+* Building and deploying
 
-  mvn clean package dependency:copy-dependencies
-  
-* Installing
-
+  mvn -Dmaven.test.skip.exec=true clean package dependency:copy-dependencies
   ant deploy
 
 * Running the bench with ant
@@ -53,6 +50,11 @@
   
   Load the ./loadtests/cmis-bench.xml file.
   Check the Parameters user defined variables.
+
+* Running the junit test with maven
+
+  mvn test
+
 
 * To do
 ** DONE Add a rampup period
