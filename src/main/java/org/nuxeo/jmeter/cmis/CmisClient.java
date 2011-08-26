@@ -1,5 +1,8 @@
 package org.nuxeo.jmeter.cmis;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +19,7 @@ import org.apache.chemistry.opencmis.commons.PropertyIds;
 import org.apache.chemistry.opencmis.commons.SessionParameter;
 import org.apache.chemistry.opencmis.commons.data.ContentStream;
 import org.apache.chemistry.opencmis.commons.enums.BindingType;
+import org.apache.chemistry.opencmis.commons.impl.dataobjects.ContentStreamImpl;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -30,7 +34,6 @@ public class CmisClient {
     private Session session;
 
     private static Log log = LogFactory.getLog(CmisClient.class);
-
 
     public CmisClient(String username, String password, String baseUrl) {
         if (log.isDebugEnabled()) {
@@ -72,7 +75,7 @@ public class CmisClient {
         return ret.getPath();
     }
 
-    public String createDocument(String parentPath, String name) {
+    public String createDocument(String parentPath, String name, byte[] content) {
         if (log.isDebugEnabled()) {
             log.debug("Create document");
         }
@@ -80,8 +83,10 @@ public class CmisClient {
         Map<String, Object> properties = new HashMap<String, Object>();
         properties.put(PropertyIds.NAME, name);
         properties.put(PropertyIds.OBJECT_TYPE_ID, "cmis:document");
-        // ContentStream content;
-        Document ret = parent.createDocument(properties, null, null);
+        InputStream stream = new ByteArrayInputStream(content);
+        ContentStream contentStream = new ContentStreamImpl(name,
+                BigInteger.valueOf(content.length), "text/plain", stream);
+        Document ret = parent.createDocument(properties, contentStream, null);
         return ret.getPaths().get(0);
     }
 
@@ -92,7 +97,8 @@ public class CmisClient {
         Folder parent = (Folder) session.getObjectByPath(parentPath);
         ItemIterable<CmisObject> children = parent.getChildren();
         int ret = 0;
-        for (@SuppressWarnings("unused") CmisObject child : children) {
+        for (@SuppressWarnings("unused")
+        CmisObject child : children) {
             ret++;
         }
         return ret;

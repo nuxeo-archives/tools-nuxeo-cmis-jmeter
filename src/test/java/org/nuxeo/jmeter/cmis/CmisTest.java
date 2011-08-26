@@ -7,6 +7,7 @@ import junit.framework.TestCase;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.nuxeo.jmeter.tools.RandomTextGenerator;
 
 /**
  * Unit test for simple App.
@@ -27,7 +28,11 @@ public class CmisTest extends TestCase {
 
     private String threadNum;
 
+    private Integer sizeKB = 8;
+
     private boolean fromJmeter = false;
+
+    private RandomTextGenerator gen;
 
     private static ThreadLocal<Integer> folderNum = new ThreadLocal<Integer>() {
         @Override
@@ -43,9 +48,11 @@ public class CmisTest extends TestCase {
     /**
      * Jmeter create a test case for each sampler and each thread
      *
+     * @throws Exception
+     *
      * @params submited by jmeter
      */
-    public CmisTest(String params) {
+    public CmisTest(String params) throws Exception {
         super(params);
         Map<String, String> map = getParamMap(params);
         String username = USERNAME;
@@ -69,6 +76,18 @@ public class CmisTest extends TestCase {
             if (threadNum != null) {
                 baseFolderName = baseFolderName + "-" + threadNum;
             }
+        } else {
+            baseFolderName = "fd-" + System.currentTimeMillis();
+        }
+        if (map.containsKey("size_kb")) {
+            String value = map.get("size_kb");
+            sizeKB = Integer.parseInt(value);
+            if (log.isDebugEnabled()) {
+                log.debug("Loading dico...");
+            }
+            gen = new RandomTextGenerator();
+            gen.prefilCache();
+            log.info("Dico loaded");
         } else {
             baseFolderName = "fd-" + System.currentTimeMillis();
         }
@@ -140,20 +159,25 @@ public class CmisTest extends TestCase {
      *
      * Note that the jmeter test runner keep the same test case instance between
      * test, so folderPath is not null.
+     * @throws Exception
      */
-    public void testCreateDocument() {
+    public void testCreateDocument() throws Exception {
         if (!fromJmeter) {
+            gen = new RandomTextGenerator();
+            gen.prefilCache();
+            log.info("Dico loaded");
             testCreateFolder();
         }
         String docName = "doc-" + System.currentTimeMillis();
-        String docPath = cmis.createDocument(getFolderPath(), docName);
+        String content = gen.getRandomText(sizeKB);
+        String docPath = cmis.createDocument(getFolderPath(), docName, content.getBytes());
         if (log.isDebugEnabled()) {
             log.debug("createDocument " + docPath);
         }
         assertEquals(docPath, getFolderPath() + "/" + docName);
     }
 
-    public void testGetChildren() {
+    public void testGetChildren() throws Exception {
         if (!fromJmeter) {
             testCreateFolder();
             testCreateDocument();

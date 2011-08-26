@@ -48,12 +48,14 @@
 
       <property name="base_url" value="${base_url}"/>
       <property name="threads" value="${threads}"/>
-      <property name="duration" value="${duration}"/>     
+      <property name="duration" value="${duration}"/>
       <property name="rampup" value="${rampup}"/>
-      <property name="loop" value="${loop}"/>     
-      <property name="username" value="${username}"/>     
-      <property name="password" value="${password}"/>     
+      <property name="loop" value="${loop}"/>
+      <property name="size_kb" value="${size_kb}"/>
+      <property name="username" value="${username}"/>
+      <property name="password" value="${password}"/>
     </jmeter>
+
     <xslt 
        classpathref="xslt.classpath"
        force="true"
@@ -65,6 +67,5 @@
     <echo>Report done: ${basedir}/loadtests/bench-results-${stamp}.html</echo>
 
   </target>
-
 
 </project>

@@ -30,6 +30,8 @@
 
   - username, password, base_url :: access to the CMIS server
 
+  - size_kb :: average size in KB of the content of created document
+
   - threads :: number of concurrent threads
 
   - loop :: number of time the scenario is repeated
@@ -82,5 +84,11 @@
    :LOGBOOK:
    - State "DONE"       from "TODO"       [2011-08-26 ven. 13:22]
    :END:
-** TODO Add a file content and title
+** DONE Add a file content and title
+   CLOSED: [2011-08-26 ven. 16:24]
+   :LOGBOOK:
+   - State "DONE"       from "TODO"       [2011-08-26 ven. 16:24]
+   :END:
+** TODO send report into target
+** TODO Add a delete action
 ** TODO Render the throughput in the report

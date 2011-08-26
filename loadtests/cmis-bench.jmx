@@ -20,7 +20,7 @@
           </elementProp>
           <elementProp name="THREADS" elementType="Argument">
             <stringProp name="Argument.name">THREADS</stringProp>
-            <stringProp name="Argument.value">${__property(threads,THREADS,40)}</stringProp>
+            <stringProp name="Argument.value">${__property(threads,THREADS,4)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="LOOP" elementType="Argument">
@@ -46,6 +46,11 @@
           <elementProp name="RAMPUP" elementType="Argument">
             <stringProp name="Argument.name">RAMPUP</stringProp>
             <stringProp name="Argument.value">${__property(rampup,RAMPUP,3)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="SIZE_KB" elementType="Argument">
+            <stringProp name="Argument.name">SIZE_KB</stringProp>
+            <stringProp name="Argument.value">${__property(size_kb,SIKZE_KB,8)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -115,7 +120,7 @@
         <stringProp name="filename"></stringProp>
       </ResultCollector>
       <hashTree/>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -185,7 +190,7 @@
         <hashTree>
           <JUnitSampler guiclass="JUnitTestSamplerGui" testclass="JUnitSampler" testname="createDocument" enabled="true">
             <stringProp name="junitSampler.classname">org.nuxeo.jmeter.cmis.CmisTest</stringProp>
-            <stringProp name="junitsampler.constructorstring">username=${USERNAME},password=${PASSWORD},base_url=${BASE_URL},folder_path=${FOLDER_PATH},thread_num=${__threadNum}</stringProp>
+            <stringProp name="junitsampler.constructorstring">username=${USERNAME},password=${PASSWORD},base_url=${BASE_URL},folder_path=${FOLDER_PATH},thread_num=${__threadNum},size_kb=${SIZE_KB}</stringProp>
             <stringProp name="junitsampler.method">testCreateDocument</stringProp>
             <stringProp name="junitsampler.pkg.filter"></stringProp>
             <stringProp name="junitsampler.success">Test successful</stringProp>
@@ -195,8 +200,8 @@
             <stringProp name="junitsampler.error">An unexpected error occured</stringProp>
             <stringProp name="junitsampler.error.code">9999</stringProp>
             <stringProp name="junitsampler.exec.setup">false</stringProp>
-            <stringProp name="junitsampler.append.error">false</stringProp>
-            <stringProp name="junitsampler.append.exception">false</stringProp>
+            <stringProp name="junitsampler.append.error">true</stringProp>
+            <stringProp name="junitsampler.append.exception">true</stringProp>
           </JUnitSampler>
           <hashTree/>
         </hashTree>
