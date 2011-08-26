@@ -88,8 +88,6 @@ public class CmisTest extends TestCase {
             gen = new RandomTextGenerator();
             gen.prefilCache();
             log.info("Dico loaded");
-        } else {
-            baseFolderName = "fd-" + System.currentTimeMillis();
         }
         // log.info("__init_ map : " + map.toString());
         log.info("Create CMIS session for thread: " + threadNum
@@ -179,7 +177,6 @@ public class CmisTest extends TestCase {
 
     public void testGetChildren() throws Exception {
         if (!fromJmeter) {
-            testCreateFolder();
             testCreateDocument();
         }
         int count = cmis.getChildren(getFolderPath());
