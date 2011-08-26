@@ -36,6 +36,10 @@ public class CmisTest extends TestCase {
         }
     };
 
+    public CmisTest() {
+        super();
+    }
+
     /**
      * Jmeter create a test case for each sampler and each thread
      *
@@ -68,8 +72,9 @@ public class CmisTest extends TestCase {
         } else {
             baseFolderName = "fd-" + System.currentTimeMillis();
         }
-        log.info("__init_ map : " + map.toString());
-        log.info("__init__ baseFolderName: " + baseFolderName);
+        // log.info("__init_ map : " + map.toString());
+        log.info("Create CMIS session for thread: " + threadNum
+                + ", baseFolderName: " + baseFolderName);
         cmis = new CmisClient(username, password, baseUrl);
     }
 
@@ -103,13 +108,17 @@ public class CmisTest extends TestCase {
     // setUp and tearDown must be public to be used by JMeter
     @Override
     public void setUp() throws Exception {
-        log.info("setUp");
+        if (log.isDebugEnabled()) {
+            log.debug("setUp");
+        }
         super.setUp();
     }
 
     @Override
     public void tearDown() throws Exception {
-        log.info("tearDown");
+        if (log.isDebugEnabled()) {
+            log.debug("tearDown");
+        }
         super.tearDown();
     }
 
@@ -118,7 +127,9 @@ public class CmisTest extends TestCase {
     public void testCreateFolder() {
         String name = getNextFolderName();
         String root = cmis.getRootFolder();
-        log.info("creatingFolder " + name);
+        if (log.isDebugEnabled()) {
+            log.debug("creatingFolder " + name);
+        }
         String ret = cmis.createFolder(root, name);
         folderNum.set(folderNum.get() + 1);
         assertEquals(ret, getFolderPath());
@@ -136,7 +147,9 @@ public class CmisTest extends TestCase {
         }
         String docName = "doc-" + System.currentTimeMillis();
         String docPath = cmis.createDocument(getFolderPath(), docName);
-        log.info("createDocument " + docPath);
+        if (log.isDebugEnabled()) {
+            log.debug("createDocument " + docPath);
+        }
         assertEquals(docPath, getFolderPath() + "/" + docName);
     }
 
@@ -146,7 +159,9 @@ public class CmisTest extends TestCase {
             testCreateDocument();
         }
         int count = cmis.getChildren(getFolderPath());
-        log.info("count " +  Integer.valueOf(count).toString());
+        if (log.isDebugEnabled()) {
+            log.debug("count " + Integer.valueOf(count).toString());
+        }
         assertTrue(count > 0);
     }
 

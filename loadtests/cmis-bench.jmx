@@ -40,7 +40,12 @@
           </elementProp>
           <elementProp name="FOLDER_PATH" elementType="Argument">
             <stringProp name="Argument.name">FOLDER_PATH</stringProp>
-            <stringProp name="Argument.value">nxjm-${__time(YMDHMS)}</stringProp>
+            <stringProp name="Argument.value">jmfd-${__time(YMDHMS)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="RAMPUP" elementType="Argument">
+            <stringProp name="Argument.name">RAMPUP</stringProp>
+            <stringProp name="Argument.value">${__property(rampup,RAMPUP,3)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -149,7 +154,7 @@
           <stringProp name="LoopController.loops">${LOOP}</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">${THREADS}</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">3</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${RAMPUP}</stringProp>
         <longProp name="ThreadGroup.start_time">1314274599000</longProp>
         <longProp name="ThreadGroup.end_time">1314274599000</longProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>

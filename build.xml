@@ -43,6 +43,7 @@
       <property name="base_url" value="${base_url}"/>
       <property name="threads" value="${threads}"/>
       <property name="duration" value="${duration}"/>     
+      <property name="rampup" value="${rampup}"/>
       <property name="loop" value="${loop}"/>     
       <property name="username" value="${username}"/>     
       <property name="password" value="${password}"/>     

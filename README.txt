@@ -33,6 +33,8 @@
 
   - loop :: number of time the scenario is repeated
 
+  - rampup :: Ramp-Up period in seconds
+
 * Building
 
   mvn clean package dependency:copy-dependencies
@@ -49,13 +51,18 @@
 
 * Running the bench with JMeter GUI
   
-  load the ./loadtests/cmis-bench.xml file.
+  Load the ./loadtests/cmis-bench.xml file.
   Check the Parameters user defined variables.
 
 * To do
+** DONE Add a rampup period
+   CLOSED: [2011-08-26 ven. 10:51]
+   :LOGBOOK:
+   - State "DONE"       from "TODO"       [2011-08-26 ven. 10:51]
+   :END:
 ** TODO Remove debug trace
+   and add log4j conf
 ** TODO Add a file content and title
 ** TODO Render the throughput in the report
 ** TODO Run build from ant
    include the mvn cmd in ant build
-

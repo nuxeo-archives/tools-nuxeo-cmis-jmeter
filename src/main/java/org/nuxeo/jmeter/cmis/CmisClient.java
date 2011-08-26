@@ -52,6 +52,8 @@ public class CmisClient {
         Session session = repositories.get(0).createSession();
         session.getRootFolder();
         this.session = session;
+        // Turn off the session cache completely
+        session.getDefaultContext().setCacheEnabled(false);
     }
 
     public String getRootFolder() {
