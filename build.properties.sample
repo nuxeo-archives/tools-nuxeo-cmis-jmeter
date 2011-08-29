@@ -5,4 +5,5 @@ base_url=http://localhost:8080/nuxeo/atom/cmis
 size_kb=8
 threads=5
 loop=4
-rampup=5
+rampup=20
+duration=30

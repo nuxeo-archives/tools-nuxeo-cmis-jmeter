@@ -18,16 +18,6 @@
             <stringProp name="Argument.value">${__property(base_url,BASE_URL,http://localhost:8080/nuxeo/atom/cmis)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="THREADS" elementType="Argument">
-            <stringProp name="Argument.name">THREADS</stringProp>
-            <stringProp name="Argument.value">${__property(threads,THREADS,4)}</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="LOOP" elementType="Argument">
-            <stringProp name="Argument.name">LOOP</stringProp>
-            <stringProp name="Argument.value">${__property(loop,LOOP,4)}</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
           <elementProp name="USERNAME" elementType="Argument">
             <stringProp name="Argument.name">USERNAME</stringProp>
             <stringProp name="Argument.value">${__property(username,USERNAME,Administrator)}</stringProp>
@@ -38,19 +28,34 @@
             <stringProp name="Argument.value">${__property(password,PASSWORD,Administrator)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="FOLDER_PATH" elementType="Argument">
-            <stringProp name="Argument.name">FOLDER_PATH</stringProp>
-            <stringProp name="Argument.value">jmfd-${__time(MDHMS)}</stringProp>
+          <elementProp name="THREADS" elementType="Argument">
+            <stringProp name="Argument.name">THREADS</stringProp>
+            <stringProp name="Argument.value">${__property(threads,THREADS,4)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="RAMPUP" elementType="Argument">
-            <stringProp name="Argument.name">RAMPUP</stringProp>
-            <stringProp name="Argument.value">${__property(rampup,RAMPUP,3)}</stringProp>
+          <elementProp name="FOLDER_PATH" elementType="Argument">
+            <stringProp name="Argument.name">FOLDER_PATH</stringProp>
+            <stringProp name="Argument.value">jm-${__time(MDHMS)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="SIZE_KB" elementType="Argument">
             <stringProp name="Argument.name">SIZE_KB</stringProp>
             <stringProp name="Argument.value">${__property(size_kb,SIKZE_KB,8)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="RAMPUP" elementType="Argument">
+            <stringProp name="Argument.name">RAMPUP</stringProp>
+            <stringProp name="Argument.value">${__property(rampup,RAMPUP,4)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="DURATION" elementType="Argument">
+            <stringProp name="Argument.name">DURATION</stringProp>
+            <stringProp name="Argument.value">${__property(duration,DURATION,14)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="LOOP" elementType="Argument">
+            <stringProp name="Argument.name">LOOP</stringProp>
+            <stringProp name="Argument.value">${__property(loop,LOOP,4)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -160,10 +165,10 @@
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">${THREADS}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${RAMPUP}</stringProp>
-        <longProp name="ThreadGroup.start_time">1314274599000</longProp>
-        <longProp name="ThreadGroup.end_time">1314274599000</longProp>
-        <boolProp name="ThreadGroup.scheduler">false</boolProp>
-        <stringProp name="ThreadGroup.duration"></stringProp>
+        <longProp name="ThreadGroup.start_time">1293887799000</longProp>
+        <longProp name="ThreadGroup.end_time">1293887799000</longProp>
+        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+        <stringProp name="ThreadGroup.duration">${DURATION}</stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
@@ -179,8 +184,8 @@
           <stringProp name="junitsampler.error">An unexpected error occured</stringProp>
           <stringProp name="junitsampler.error.code">9999</stringProp>
           <stringProp name="junitsampler.exec.setup">false</stringProp>
-          <stringProp name="junitsampler.append.error">false</stringProp>
-          <stringProp name="junitsampler.append.exception">false</stringProp>
+          <stringProp name="junitsampler.append.error">true</stringProp>
+          <stringProp name="junitsampler.append.exception">true</stringProp>
         </JUnitSampler>
         <hashTree/>
         <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
@@ -200,8 +205,8 @@
             <stringProp name="junitsampler.error">An unexpected error occured</stringProp>
             <stringProp name="junitsampler.error.code">9999</stringProp>
             <stringProp name="junitsampler.exec.setup">false</stringProp>
-            <stringProp name="junitsampler.append.error">false</stringProp>
-            <stringProp name="junitsampler.append.exception">false</stringProp>
+            <stringProp name="junitsampler.append.error">true</stringProp>
+            <stringProp name="junitsampler.append.exception">true</stringProp>
           </JUnitSampler>
           <hashTree/>
         </hashTree>

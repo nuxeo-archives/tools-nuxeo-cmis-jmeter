@@ -7,11 +7,12 @@
 
   The test scenario is the following:
 
-  1. create a folder at the root level
-  2. create 10 files
-  3. perform a getChildren on the folder
+  1. Creates a random folder at the root level
+  2. Creates 10 file documents with random contents using a french
+     corpus
+  3. Performs a getChildren on the folder
 
-  This senario can be repeated using the loop properties (see below).
+  This senario is running in loop for the specified duration.
 
 * Requirement
 
@@ -34,9 +35,13 @@
 
   - threads :: number of concurrent threads
 
-  - loop :: number of time the scenario is repeated
+  - rampup :: Ramp-Up period in seconds, this tells JMeter how long
+	      to take to launch the concurrent threads
 
-  - rampup :: Ramp-Up period in seconds
+  - duration :: total duration of the bench
+
+  - loop :: number of time the scenario is repeated (not used by
+	    default the duration mode is used)
 
 * Building and deploying
 
@@ -53,7 +58,9 @@
 * Running the bench with the JMeter GUI
   
   Load the ./loadtests/cmis-bench.xml file.
-  Check the Parameters user defined variables.
+
+  Edit the "Parameters user defined variables". For instnace the
+  default value for ${__property(rampup,RAMPUP,4)} is 4.
 
 * Running the junit test with maven
 
