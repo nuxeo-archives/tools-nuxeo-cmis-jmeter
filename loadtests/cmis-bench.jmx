@@ -125,7 +125,7 @@
         <stringProp name="filename"></stringProp>
       </ResultCollector>
       <hashTree/>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -161,7 +161,7 @@
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">${LOOP}</stringProp>
+          <intProp name="LoopController.loops">-1</intProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">${THREADS}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${RAMPUP}</stringProp>
@@ -184,8 +184,8 @@
           <stringProp name="junitsampler.error">An unexpected error occured</stringProp>
           <stringProp name="junitsampler.error.code">9999</stringProp>
           <stringProp name="junitsampler.exec.setup">false</stringProp>
-          <stringProp name="junitsampler.append.error">true</stringProp>
-          <stringProp name="junitsampler.append.exception">true</stringProp>
+          <stringProp name="junitsampler.append.error">false</stringProp>
+          <stringProp name="junitsampler.append.exception">false</stringProp>
         </JUnitSampler>
         <hashTree/>
         <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
@@ -205,8 +205,8 @@
             <stringProp name="junitsampler.error">An unexpected error occured</stringProp>
             <stringProp name="junitsampler.error.code">9999</stringProp>
             <stringProp name="junitsampler.exec.setup">false</stringProp>
-            <stringProp name="junitsampler.append.error">true</stringProp>
-            <stringProp name="junitsampler.append.exception">true</stringProp>
+            <stringProp name="junitsampler.append.error">false</stringProp>
+            <stringProp name="junitsampler.append.exception">false</stringProp>
           </JUnitSampler>
           <hashTree/>
         </hashTree>
