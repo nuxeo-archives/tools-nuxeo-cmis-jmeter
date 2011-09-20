@@ -42,8 +42,8 @@
     <jmeter
        jmeterhome="${jmeter.home}"
        testplan="${basedir}/loadtests/cmis-bench.jmx"
-       resultlog="${report.path}/bench-results-${stamp}.csv">
-      <property name="jmeter.save.saveservice.output_format" value="csv"/>
+       resultlog="${report.path}/bench-results-${stamp}.xml">
+      <property name="jmeter.save.saveservice.output_format" value="xml"/>
       <property name="jmeter.save.saveservice.assertion_results" value="all"/>
       <property name="jmeter.save.saveservice.bytes" value="true"/>
       <property name="jmeter.save.saveservice.thread_counts" value="true"/>
